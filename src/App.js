@@ -1,4 +1,5 @@
-
+import React from 'react';
+import arrow from './images/icon-arrow.svg'
 
 function App() {
   return (
@@ -7,32 +8,35 @@ function App() {
         <div className='content'>
           <h1>IP Address Tracker</h1>
           <div className='input-container'>
-            <input placeholder='Enter IP Value'></input>
+            <input placeholder='Enter any IP Address'></input>
+            <div className='button'>
+              <img src={arrow} alt='' className='arrow'/>
+            </div>
           </div>
           <div className='info-container'>
             <div className='info-container--row'>
-              <p className='small-heading'>Ip Address</p>
+              <p className='small-content'>Ip Address</p>
               <p className='big-content'>Big Content</p>
             </div>
             <div className='info-container--row'>
-              <p className='small-heading'>Location</p>
+              <p className='small-content'>Location</p>
               <p className='big-content'>Big Content</p>
             </div>
             <div className='info-container--row'>
-              <p className='small-heading'>Timezone</p>
+              <p className='small-content'>Timezone</p>
               <p className='big-content'>Big Content</p>
             </div>
             <div className='info-container--row'>
-              <p className='small-heading'>ISP</p>
+              <p className='small-content'>ISP</p>
               <p className='big-content'>Big Content</p>
             </div>
           </div>
         </div>
         <div className='background'>
-          stete
+          
         </div>
         <div className='map'>
-tee
+
         </div>
 
       </div>
