@@ -64,6 +64,7 @@ body {
   margin-bottom: 20px;
   display: flex;
   height: 45px;
+  /* box-shadow: 0px 3px 5px 0px #0000004f; */
 }
 
 .input-container input {
@@ -99,7 +100,7 @@ body {
   background-color: white;
   border-radius: 10px;
   padding: 10px 0;
-
+  box-shadow: 0px 3px 5px 0px #0000004f;
 }
 
 .info-container--row {

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import arrow from './images/icon-arrow.svg'
 import axios from 'axios'
 const {REACT_APP_IP_API} = process.env;
@@ -7,19 +7,19 @@ const {REACT_APP_IP_API} = process.env;
 function App() {
   const [ipSearch, setIpSearch] = useState('');
   const [location, setLocation] = useState([51.505, -0.09])
-  const [mapCenter, setMapCenter] = useState([51.515, -0.09])
+  const [mapCenter, setMapCenter] = useState([location[0]+.003, location[1]])
   const [data, setData] = useState({})
+  const [updated, setUpdated] = useState([0])
   const [numKeys, setNumKeys] = useState(0)
-  // console.log(REACT_APP_IP_API)
 
   useEffect(()=> {
-    console.log(data)
+    // console.log(data)
     const num = Object.keys(data).length
     setNumKeys(num)
+    setUpdated([!updated])   
   },[data])
 
   function getApiInfo(){
-
     const baseUrl = 'https://geo.ipify.org/api/v1'
     axios.get(baseUrl,{
       params: {
@@ -28,7 +28,7 @@ function App() {
       }
     })
     .then(res => {
-      console.log(res.data)
+      // console.log(res.data)
       const {lat, lng, city, country, timezone} = res.data.location
       const {ip, isp} = res.data
       const dataObj = {
@@ -38,16 +38,20 @@ function App() {
         timezone
       }
       setData({...data, ...dataObj})
-      // console.log(dataObj)
-
+      setMapCenter([lat+.003, lng])
       setLocation([lat, lng])
-      setMapCenter([lat, lng])
     })
     .catch(error => console.log(error))
   }
 
   const handleIpChange = (e) => {
     setIpSearch(e.target.value)
+  }
+
+  function ChangeView() {
+    const map = useMap();
+    map.setView(mapCenter);
+    return null;
   }
 
 
@@ -86,19 +90,15 @@ function App() {
           
         </div>
         <div className='map'>
-
-        <MapContainer center={mapCenter} zoom={13} scrollWheelZoom={true}>
-          <TileLayer
-          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          />
-          <Marker position={location}> 
-            {/* <Popup>
-            A pretty CSS3 popup. <br /> Easily customizable.
-            </Popup> */}
-        </Marker>
-        </MapContainer>
-
+              <MapContainer center={mapCenter} zoom={15} scrollWheelZoom={true}>
+                <ChangeView center={mapCenter} zoom={15} />
+                <TileLayer
+                attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                />
+                <Marker position={location}> 
+              </Marker>
+            </MapContainer>
         </div>
 
       </div>
