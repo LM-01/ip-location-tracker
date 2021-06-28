@@ -9,14 +9,12 @@ function App() {
   const [location, setLocation] = useState([51.505, -0.09])
   const [mapCenter, setMapCenter] = useState([location[0]+.003, location[1]])
   const [data, setData] = useState({})
-  const [updated, setUpdated] = useState([0])
   const [numKeys, setNumKeys] = useState(0)
 
   useEffect(()=> {
     // console.log(data)
     const num = Object.keys(data).length
     setNumKeys(num)
-    setUpdated([!updated])   
   },[data])
 
   function getApiInfo(){
