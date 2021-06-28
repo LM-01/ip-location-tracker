@@ -12,7 +12,7 @@ body {
 .main-container {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 30% 70%;
+  grid-template-rows: 300px 1fr;
   position: relative;
   height: 100vh;
 }
@@ -22,7 +22,8 @@ body {
   background-image: url('./images/pattern-bg.png');
   grid-row: 1;
   BACKGROUND-SIZE: cover;
-  background-position-x: 645px;
+  background-position-x: 100%;
+  max-height: 300px;
 }
 
 .map {
@@ -71,14 +72,15 @@ body {
   font-size: 15px;
   padding: 10px;
   padding-left: 20px;
-  /* color: hsl(0, 0%, 59%); */
+  color: hsl(0, 0%, 59%);
   border-radius: 10px 0 0 10px;
   border: 0;
   cursor: pointer;
+  width: 100%;
 }
 
 .input-container input::placeholder{
-  color: black;
+  color: hsl(0, 0%, 59%);
   font-family: 'Rubik', sans-serif;
   font-size: 15px;
 }
@@ -93,6 +95,7 @@ body {
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  max-width: 45px;
 }
 
 
@@ -124,4 +127,32 @@ body {
   font-weight: bold;
   margin-bottom: 5px;
   letter-spacing: 1px;
+}
+
+@media (min-width: 800px) {
+
+  .content h1 {
+  margin-bottom: 50px;
+}  
+
+.content {
+  top: 50px;
+}  
+
+.info-container {
+  display: flex;
+  justify-content: space-around;
+  width: 70%;
+  margin: 0 auto;
+  height: 100px;
+  align-items: center;
+}
+
+.input-container {
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 40px;
+}
+
 }

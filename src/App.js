@@ -45,8 +45,10 @@ function App() {
   }
 
   const handleIpChange = (e) => {
+    console.log(e)
     setIpSearch(e.target.value)
   }
+
 
   function ChangeView() {
     const map = useMap();
@@ -62,7 +64,9 @@ function App() {
         <div className='content'>
           <h1>IP Address Tracker</h1>
           <div className='input-container'>
-            <input placeholder='Enter any IP Address' value={ipSearch} onChange={handleIpChange}></input>
+            <input placeholder='Enter any IP Address' value={ipSearch} 
+            onChange={handleIpChange}
+            ></input>
             <div className='button' onClick={getApiInfo}>
               <img src={arrow} alt='' className='arrow'/>
             </div>
